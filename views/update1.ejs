@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualização de Produto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+</head>
+<style>
+    form .Cjc{
+    width: 92%;
+    outline: none;
+    border: 1px solid #fff;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: #348de0;
+    color: #fff;
+    }
+</style>
+<body>
+   
+    <h4>Atualizar Produto</h4>
+    <div class="container">
+    <form action="/update1Data/<%= produtos[0].id %>" method="post">
+        <input type="text" placeholder="Nome" name="nome" value="<%= produtos[0].nome %>">
+        <input type="text" placeholder="Descrição" name="descricao" value="<%= produtos[0].descricao %>">
+        <input type="number" placeholder="Preço" name="preco" value="<%= produtos[0].preco %>">
+        <input type="number" placeholder="Estoque" name="estoque" value="<%= produtos[0].estoque %>">
+        <input type="number" placeholder="ID Fornecedor" name="id_fornecedores" value="<%= produtos[0].id_fornecedores %>">
+        <input type="number" placeholder="ID Categoria Produto" name="id_categorias_produto" value="<%= produtos[0].id_categorias_produto %>">
+        <input type="submit" value="Enviar" class="Cjc">
+    </form>
+</div>   
+</body>
+</html>

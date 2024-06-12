@@ -1,0 +1,59 @@
+<!-- views/visualizacao.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <title>Lista de equipas</title>
+</head>
+<style>
+    a{
+        text-decoration: none;
+        color: black;
+    }
+
+    button{
+        background-color: dodgerblue;
+        color: #fff;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        font-size: 16px;
+        margin-top: 1.8rem;
+        padding: 10px;
+        font-weight: 500;
+    }
+</style>
+<body>
+  <div class="container">
+    <form action="/usuarios" method="post">
+    </form>
+    </div>
+    <h3>Lista de Equipas</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Numero</th>
+            <th>Senha</th>
+        </tr>
+        <% if (equipas.length > 0) { %>
+            <% for (var i = 0; i < equipas.length; i++) { %>
+                <tr class="collection">
+                    <td class="collection-item"><%= equipas[i].id %></td>
+                    <td class="collection-item"><%= equipas[i].username %></td>
+                    <td class="collection-item"><%= equipas[i].number %></td>
+                    <td class="collection-item"><%= equipas[i].password %></td>
+                    <td class="collection-item"><a href="/update/<%= equipas[i].id %>"><button>Editar</button></a></td>
+                    <td class="collection-item" id="btn"><a href="/delete/<%= equipas[i].id %>" onclick="return confirm('Tem certeza que deseja deletar este equipas?')"><button>Deletar</button></a></td>
+                </tr>
+            <% } %>
+        <% } else { %>
+            <tr>
+                <td colspan="4">Nenhum equipas encontrado.</td>
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "axe/text-alternatives": "off",
+    "axe/keyboard": "off",
+    "axe/name-role-value": "off"
+  }
+}

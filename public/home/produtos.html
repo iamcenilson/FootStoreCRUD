@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <style>
+        .product-list {
+            margin-top: 20px;
+        }
+        .product-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h4>Lista de Produtos</h4>
+    <div class="container">
+        <div id="productList" class="product-list">
+            <!-- Produtos serão listados aqui -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/produtos')
+                .then(response => response.json())
+                .then(data => {
+                    const productList = document.getElementById('productList');
+                    data.forEach(product => {
+                        const productItem = document.createElement('div');
+                        productItem.className = 'product-item';
+                        productItem.innerHTML = `
+                            <strong>Nome:</strong> ${product.nome} <br>
+                            <strong>Descrição:</strong> ${product.descricao} <br>
+                            <strong>Preço:</strong> ${product.preco} <br>
+                            <strong>Estoque:</strong> ${product.estoque} <br>
+                            <strong>ID Fornecedor:</strong> ${product.id_fornecedores} <br>
+                            <strong>ID Categoria:</strong> ${product.id_categorias_produto} <br>
+                        `;
+                        productList.appendChild(productItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar produtos:', error);
+                });
+        });
+    </script>
+</body>
+</html>

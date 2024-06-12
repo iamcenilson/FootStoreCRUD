@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+  <title>Cadastrar Produto</title>
+  <style>
+    form .Cjc{
+    width: 92%;
+    outline: none;
+    border: 1px solid #fff;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: #348de0;
+    color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h4>Cadastrar Produtos</h4>
+<form action="/cadastrar_produto" method="post" id="productForm" class="collection">
+  <input type="text" id="nome" name="nome" placeholder="Nome do Produto" required class="collection-item">
+  <input type="text" id="descricao" name="descricao" placeholder="Descrição do Produto" required class="collection-item">
+  <input type="number" id="preco" name="preco" step="0.01" placeholder="Preço" required class="collection-item">
+  <input type="text" id="estoque" name="estoque" placeholder="Estoque" required class="collection-item">
+  <input type="number" id="id_fornecedores" name="id_fornecedores" placeholder="ID do Fornecedor" required class="collection-item">
+  <input type="number" id="id_categorias_produto" name="id_categorias_produto" placeholder="ID da Categoria do Produto" required class="collection-item">
+  <button type="submit" class="Cjc">Cadastrar Produto</button>
+</form>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      // Adiciona o ouvinte de eventos ao formulário
+      document.getElementById('productForm').addEventListener('submit', function(event) {
+          event.preventDefault();  // Previne o envio padrão do formulário
+
+          // Obtém os valores dos campos do formulário
+          const nome = document.getElementById('nome').value;
+          const descricao = document.getElementById('descricao').value;
+          const preco = parseFloat(document.getElementById('preco').value);
+          const estoque = document.getElementById('estoque').value;
+          const id_fornecedores = parseInt(document.getElementById('id_fornecedores').value);
+          const id_categorias_produto = parseInt(document.getElementById('id_categorias_produto').value);
+
+          // Envia os dados ao servidor usando fetch
+          fetch('/cadastrar_produto', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ nome, descricao, preco, estoque, id_fornecedores, id_categorias_produto })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.error) {
+                  alert(data.error);  // Exibe um alerta em caso de erro
+              } else if (data.success) {
+                  alert(data.success);  // Exibe um alerta em caso de sucesso
+              }
+          })
+          .catch(error => {
+              alert('Erro ao enviar dados: ' + error);  // Exibe um alerta em caso de erro no envio
+          });
+      });
+  });
+</script>
+</html>

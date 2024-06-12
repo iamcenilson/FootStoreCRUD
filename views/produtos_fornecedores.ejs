@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos e Fornecedores</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+</head>
+<style>
+    a {
+        text-decoration: none;
+        color: black;
+    }
+</style>
+<body>
+  <div class="container">
+    <h3>Lista de Produtos com seus Fornecedores</h3>
+    <table>
+        <tr>
+            <th>ID Produto</th>
+            <th>Nome Produto</th>
+            <th>Descrição Produto</th>
+            <th>Preço Produto</th>
+            <th>Estoque Produto</th>
+            <th>ID Fornecedor</th>
+            <th>Nome Fornecedor</th>
+            <th>Detalhe de Contrato do Fornecedor</th>
+        </tr>
+        <% if (produtos_fornecedores.length > 0) { %>
+            <% for (var i = 0; i < produtos_fornecedores.length; i++) { %>
+                <tr class="collection">
+                    <td class="collection-item"><%= produtos_fornecedores[i].produto_id %></td>
+                    <td class="collection-item"><%= produtos_fornecedores[i].produto_nome %></td>
+                    <td class="collection-item"><%= produtos_fornecedores[i].produto_descricao %></td>
+                    <td class="collection-item"><%= produtos_fornecedores[i].produto_preco %></td>
+                    <td class="collection-item"><%= produtos_fornecedores[i].produto_estoque %></td>
+                    <td class="collection-item"><%= produtos_fornecedores[i].fornecedor_id %></td>
+                    <td class="collection-item"><%= produtos_fornecedores[i].fornecedor_nome %></td>
+                    <td class="collection-item"><%= produtos_fornecedores[i].fornecedor_detalhe_de_contrato %></td>
+                    </td>
+                </tr>
+            <% } %>
+        <% } else { %>
+            <tr>
+                <td colspan="9">Nenhum produto encontrado.</td>
+            </tr>
+        <% } %>
+    </table>
+  </div>
+</body>
+</html>

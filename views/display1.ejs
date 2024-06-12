@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <title>Lista de Produtos</title>
+</head>
+<style>
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    button{
+        background-color: dodgerblue;
+        color: #fff;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        font-size: 16px;
+        margin-top: 1.8rem;
+        padding: 10px;
+        font-weight: 400;
+    }
+    h3{
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<body>
+  <div class="container">
+    <form action="/display1" method="post">
+    </form>
+  </div>
+  <h3>Lista de Produtos</h3>
+  <table>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+        <th>Estoque</th>
+        <th>ID Fornecedor</th>
+        <th>ID Categoria Produto</th>
+        <th>Ações</th>
+    </tr>
+    <% if (produtos.length > 0) { %>
+        <% for (var i = 0; i < produtos.length; i++) { %>
+            <tr class="collection">
+                <td class="collection-item"><%= produtos[i].id %></td>
+                <td class="collection-item"><%= produtos[i].nome %></td>
+                <td class="collection-item"><%= produtos[i].descricao %></td>
+                <td class="collection-item"><%= produtos[i].preco %></td>
+                <td class="collection-item"><%= produtos[i].estoque %></td>
+                <td class="collection-item"><%= produtos[i].id_fornecedores %></td>
+                <td class="collection-item"><%= produtos[i].id_categorias_produto %></td>
+                <td class="collection-item"><a href="/update1/<%= produtos[i].id %>"><button>Editar</button></a></td>
+                <td class="collection-item"><a href="/delete1/<%= produtos[i].id %>" onclick="return confirm('Tem certeza que deseja deletar este equipas?')"><button>Deletar</button></a></td>
+                </td>
+            </tr>
+        <% } %>
+    <% } else { %>
+        <tr>
+            <td colspan="8">Nenhum produto encontrado.</td>
+        </tr>
+    <% } %>
+  </table>
+</body>
+</html>
